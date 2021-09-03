@@ -1,11 +1,15 @@
 package com.example;
 
-import io.micronaut.http.client.annotation.Client;
+import io.micronaut.core.type.Argument;
+import io.micronaut.http.HttpRequest;
 import io.micronaut.http.uri.UriBuilder;
 import jakarta.inject.Singleton;
 
 import java.net.URI;
 import java.net.http.HttpClient;
+
+import static io.netty.handler.codec.http.HttpHeaderNames.ACCEPT;
+import static jdk.internal.net.http.HttpRequestImpl.USER_AGENT;
 
 @Singleton
 public class PokeClient {

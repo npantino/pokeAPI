@@ -1,3 +1,8 @@
 micronaut:
   application:
     name: pokeAPIv3
+  router:
+    static-resources:
+      site:
+        paths:
+          - classpath:Pokemon-front-end

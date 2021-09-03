@@ -4,6 +4,8 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+
 @Controller("/api/http-test")
 public class TestController {
     final private PokeClient pokeClient;
@@ -12,8 +14,13 @@ public class TestController {
         this.pokeClient = pokeClient;
     }
 
-    @Get
-    public Mono<MachineResponse> test() {
-        return pokeClient.fetchMachine("1");
+    @Get("regular")
+    public Mono<MachineResponse> regular() {
+        return pokeClient.fetchMachine("machine", "1");
+    }
+
+    @Get("override")
+    public Mono<MachineResponse> override() {
+        return pokeClient.fetchMachine(URI.create("/machine/2"));
     }
 }

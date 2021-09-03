@@ -7,6 +7,7 @@ import io.micronaut.http.uri.UriBuilder;
 import jakarta.inject.Singleton;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.util.Map;
 
 @Singleton
@@ -18,11 +19,17 @@ public class PokeClient {
         @Client("https://pokeapi.co/api/v2") HttpClient httpClient
     ) {
         this.httpClient = httpClient;
-        this.uri = UriBuilder.of("/machine/{id}");
+        this.uri = UriBuilder.of("/{resource}/{id}");
     }
 
-    Mono<MachineResponse> fetchMachine(String id) {
-        HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("id", id)));
+    Mono<MachineResponse> fetchResource(String resource, String id) {
+        HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("resource", resource,"id", id)));
+
+        return Mono.from(httpClient.retrieve(req, MachineResponse.class));
+    }
+
+    Mono<MachineResponse> fetchResource(URI override) {
+        HttpRequest<?> req = HttpRequest.GET(override);
 
         return Mono.from(httpClient.retrieve(req, MachineResponse.class));
     }

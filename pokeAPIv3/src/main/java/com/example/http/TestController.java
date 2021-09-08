@@ -14,9 +14,14 @@ public class TestController {
         this.pokeClient = pokeClient;
     }
 
-    @Get("regular")
-    public Mono<MachineResponse> regular() {
-        return pokeClient.fetchResource("machine", "1");
+    @Get("machine")
+    public Mono<MachineResponse> machine() {
+        return pokeClient.fetchResource("machine", "1", MachineResponse.class);
+    }
+
+    @Get("pokemon")
+    public Mono<PokemonResponse> pokemon() {
+        return pokeClient.fetchResource("pokemon", "1", PokemonResponse.class);
     }
 
     @Get("override")

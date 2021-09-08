@@ -22,10 +22,10 @@ public class PokeClient {
         this.uri = UriBuilder.of("/{resource}/{id}");
     }
 
-    Mono<MachineResponse> fetchResource(String resource, String id) {
+    <T> Mono<T> fetchResource(String resource, String id, Class<T> type) {
         HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("resource", resource,"id", id)));
 
-        return Mono.from(httpClient.retrieve(req, MachineResponse.class));
+        return Mono.from(httpClient.retrieve(req, type));
     }
 
     Mono<MachineResponse> fetchResource(URI override) {

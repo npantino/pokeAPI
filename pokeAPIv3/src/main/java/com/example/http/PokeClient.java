@@ -33,4 +33,16 @@ public class PokeClient {
 
         return Mono.from(httpClient.retrieve(req, MachineResponse.class));
     }
+
+    Mono<PokemonResponse> fetchPokemon(String resource, String id) {
+        HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("resource", resource,"id", id)));
+
+        return Mono.from(httpClient.retrieve(req, PokemonResponse.class));
+    }
+
+    Mono<PokemonResponse> fetchPokemon(URI override) {
+        HttpRequest<?> req = HttpRequest.GET(override);
+
+        return Mono.from(httpClient.retrieve(req, PokemonResponse.class));
+    }
 }

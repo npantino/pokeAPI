@@ -48,12 +48,12 @@ function getStuff() {
                     document.getElementById("abilities").innerHTML = `Abilities: ${abilities}`;
 
                     // Moves
-                    // Learnset
 
+                    // Learnset
                     let learnset = [];
                     for (let i = 0; i < json.moves.length; i++) {
                         //console.log(json.moves[i].version_group_details[0].move_learn_method.name);
-                        if (json.moves[i].version_group_details[0].move_learn_method.name == "level-up") {
+                        if (json.moves[i].version_group_details[0].move_learn_method.name === "level-up") {
                             learnset.push([json.moves[i].version_group_details[0].level_learned_at, json.moves[i].move.name]);
                             //console.log(json.moves[i].move.name);
                         }

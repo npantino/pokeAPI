@@ -5,6 +5,7 @@ import io.micronaut.http.annotation.Get;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
+import java.util.List;
 
 @Controller("/api/http-test")
 public class TestController {
@@ -24,10 +25,15 @@ public class TestController {
         return pokeClient.fetchResource("pokemon", "1", PokemonResponse.class);
     }
 
-    @Get("override")
+    @Get("encounters")
+    public Mono<List> encounters() {
+        return pokeClient.fetchAltResource("1", "encounters", List.class);
+    }
+
+    /*@Get("override")
     public Mono<MachineResponse> override() {
         return pokeClient.fetchResource(URI.create("/machine/2"));
-    }
+    }*/
 
     @Get("pokemon_regular")
     public Mono<PokemonResponse> pokemon_regular() {
@@ -36,6 +42,6 @@ public class TestController {
 
     @Get("pokemon_override")
     public Mono<PokemonResponse> pokemon_override() {
-        return pokeClient.fetchPokemon(URI.create("/machine/2"));
+        return pokeClient.fetchPokemon(URI.create("/pokemon/2"));
     }
 }

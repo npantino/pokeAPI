@@ -33,7 +33,7 @@ function getStuff() {
                         document.getElementById("stat_" + (i+1)).innerHTML = json.stats[i].base_stat;
                     }
                     document.getElementById("stat_total").innerHTML = total;
-
+                    /*
                     // Abilities (including hidden)
                     let abilities = "";
                     for (let i = 0; i < json.abilities.length; i++) {
@@ -46,10 +46,11 @@ function getStuff() {
                         }
                     }
                     document.getElementById("abilities").innerHTML = `Abilities: ${abilities}`;
-
+                    */
                     // Moves
 
                     // Learnset
+                    /*
                     let learnset = [];
                     for (let i = 0; i < json.moves.length; i++) {
                         //console.log(json.moves[i].version_group_details[0].move_learn_method.name);
@@ -62,6 +63,8 @@ function getStuff() {
                         return a[0] - b[0];
                     })
                     console.log(learnset);
+                    */
+
                 });
         });
 

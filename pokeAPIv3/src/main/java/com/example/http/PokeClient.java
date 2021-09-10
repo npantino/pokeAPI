@@ -28,10 +28,10 @@ public class PokeClient {
         return Mono.from(httpClient.retrieve(req, type));
     }
 
-    Mono<MachineResponse> fetchResource(URI override) {
-        HttpRequest<?> req = HttpRequest.GET(override);
+    <T> Mono<T> fetchAltResource(String id, String resource, Class<T> type) {
+        HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("id", id,"resource", resource)));
 
-        return Mono.from(httpClient.retrieve(req, MachineResponse.class));
+        return Mono.from(httpClient.retrieve(req, type));
     }
 
     Mono<PokemonResponse> fetchPokemon(String resource, String id) {

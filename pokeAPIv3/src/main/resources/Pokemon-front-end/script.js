@@ -2,17 +2,21 @@ function getStuff() {
     let pokemonName = document.getElementById("searchBox").value;
     let id = ""
     let location_details = ""
+    let originalUrl = 'https://pokeapi.co/api/v2/pokemon/{id or name}/';
 
     // Collect promises so we can wait to show the info box until all promises have resolved
-    const pokemonPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`, {
+    const pokemonPromise = fetch("http://localhost:8080/api/http-test/pokemon", {
+        mode: "no-cors",
         headers: {
             'Content-Type': 'application/json',
             credentials: 'include',
+            'Access-Control-Allow-Origin': "http://localhost:8080/api/http-test/pokemon"
         }
     })
         .then(response => {
-            return response.json()
+            return response.text()
                 .then(json => {
+                    console.log(json);
                     id = json.id;
                     document.getElementById("id").innerHTML = `id: ${id}`;
                     // Pokemon typing
@@ -33,7 +37,9 @@ function getStuff() {
                         document.getElementById("stat_" + (i+1)).innerHTML = json.stats[i].base_stat;
                     }
                     document.getElementById("stat_total").innerHTML = total;
-                    /*
+
+
+
                     // Abilities (including hidden)
                     let abilities = "";
                     for (let i = 0; i < json.abilities.length; i++) {
@@ -46,7 +52,7 @@ function getStuff() {
                         }
                     }
                     document.getElementById("abilities").innerHTML = `Abilities: ${abilities}`;
-                    */
+
                     // Moves
 
                     // Learnset
@@ -63,8 +69,8 @@ function getStuff() {
                         return a[0] - b[0];
                     })
                     console.log(learnset);
-                    */
 
+                    */
                 });
         });
 

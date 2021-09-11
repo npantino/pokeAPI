@@ -7,28 +7,12 @@ import java.util.List;
 public class PokemonResponse {
     Integer id;
     String name;
+    List<Abilities> abilities;
     List<Types> types;
     List<Stats> stats;
-
-    public int getTotalStats() {
-        int totalStats = 0;
-        for (int i = 0; i < stats.size(); i++) {
-            totalStats += stats.get(i).base_stat;
-        }
-        return totalStats;
-    }
-
-
-    public List<Stats> getStats() {
-        return stats;
-    }
-
-    public void setStats(List<Stats> stats) {
-        this.stats = stats;
-    }
-
     @JsonProperty("version_group")
     VersionGroup versionGroup;
+
 
     public List<Types> getTypes() {
         return types;
@@ -47,6 +31,24 @@ public class PokemonResponse {
         return this;
     }
 
+    public int getTotalStats() {
+        int totalStats = 0;
+        for (int i = 0; i < stats.size(); i++) {
+            totalStats += stats.get(i).base_stat;
+        }
+        return totalStats;
+    }
+
+
+    public List<Stats> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<Stats> stats) {
+        this.stats = stats;
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -63,6 +65,48 @@ public class PokemonResponse {
     public PokemonResponse setVersionGroup(VersionGroup versionGroup) {
         this.versionGroup = versionGroup;
         return this;
+    }
+
+    public List<Abilities> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(List<Abilities> abilities) {
+        this.abilities = abilities;
+    }
+}
+
+
+class Abilities {
+    boolean is_hidden;
+    Ability ability;
+
+    public boolean getis_hidden() {
+        return is_hidden;
+    }
+
+    public void setis_hidden(boolean is_hidden) {
+        this.is_hidden = is_hidden;
+    }
+
+    public Ability getAbility() {
+        return ability;
+    }
+
+    public void setAbility(Ability ability) {
+        this.ability = ability;
+    }
+}
+
+class Ability {
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

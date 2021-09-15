@@ -14,7 +14,7 @@ function getStuff() {
         }
     })
         .then(response => {
-            return response.text()
+            return response.json()
                 .then(json => {
                     console.log(json);
                     id = json.id;

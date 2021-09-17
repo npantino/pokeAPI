@@ -2,6 +2,7 @@ package com.example.http;
 
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.PathVariable;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -20,14 +21,20 @@ public class TestController {
         return pokeClient.fetchResource("machine", "1", MachineResponse.class);
     }
 
-    @Get("pokemon")
-    public Mono<PokemonResponse> pokemon() {
-        return pokeClient.fetchResource("pokemon", "1", PokemonResponse.class);
+    @Get("pokemon/{pokemon}")
+    public Mono<PokemonResponse> pokemon(@PathVariable String pokemon) {
+        Mono<PokemonResponse> pokemonResponse =  pokeClient.fetchResource("pokemon", pokemon, PokemonResponse.class);
+        Mono<List> encounterResponse =  pokeClient.fetchAltResource("pokemon", pokemon,
+                "encounters", List.class);
+        return pokemonResponse.map((pr) -> {
+            pr.encounterResponse = encounterResponse.block();
+            return pr;
+        });
     }
 
-    @Get("encounters")
-    public Mono<List> encounters() {
-        return pokeClient.fetchAltResource("1", "encounters", List.class);
+    @Get("encounters/{pokemon}")
+    public Mono<List> encounters(@PathVariable String pokemon) {
+        return pokeClient.fetchAltResource("pokemon", pokemon, "encounters", List.class);
     }
 
     /*@Get("override")

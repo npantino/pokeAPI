@@ -6,6 +6,3 @@ micronaut:
       site:
         paths:
           - classpath:Pokemon-front-end
-  server:
-    cors:
-      enabled: false

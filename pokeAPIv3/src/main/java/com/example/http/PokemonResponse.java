@@ -10,6 +10,8 @@ public class PokemonResponse {
     List<Abilities> abilities;
     List<Types> types;
     List<Stats> stats;
+    List<EncounterResponse> encounterResponse;
+    //List<location_area> location_area;
     @JsonProperty("version_group")
     VersionGroup versionGroup;
 
@@ -39,7 +41,6 @@ public class PokemonResponse {
         return totalStats;
     }
 
-
     public List<Stats> getStats() {
         return stats;
     }
@@ -48,6 +49,13 @@ public class PokemonResponse {
         this.stats = stats;
     }
 
+    public List<EncounterResponse> getEncounterResponse() {
+        return encounterResponse;
+    }
+
+    public void setEncounterResponse(List<EncounterResponse> encounterResponse) {
+        this.encounterResponse = encounterResponse;
+    }
 
     public Integer getId() {
         return id;

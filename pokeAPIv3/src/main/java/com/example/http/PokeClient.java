@@ -19,7 +19,7 @@ public class PokeClient {
         @Client("https://pokeapi.co/api/v2") HttpClient httpClient
     ) {
         this.httpClient = httpClient;
-        this.uri = UriBuilder.of("/{resource}/{id}");
+        this.uri = UriBuilder.of("/{resource}/{id}/{subresource}");
     }
 
     <T> Mono<T> fetchResource(String resource, String id, Class<T> type) {
@@ -28,8 +28,8 @@ public class PokeClient {
         return Mono.from(httpClient.retrieve(req, type));
     }
 
-    <T> Mono<T> fetchAltResource(String id, String resource, Class<T> type) {
-        HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("id", id,"resource", resource)));
+    <T> Mono<T> fetchAltResource(String resource, String id, String subresource, Class<T> type) {
+        HttpRequest<?> req = HttpRequest.GET(uri.expand(Map.of("resource", resource, "id", id,"subresource", subresource)));
 
         return Mono.from(httpClient.retrieve(req, type));
     }

@@ -1,38 +1,26 @@
 package com.example.http;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EncounterResponse {
-    Integer id;
-    String name;
+    LocationArea location_area;
 
-    @JsonProperty("version_group")
-    VersionGroup versionGroup;
+    public LocationArea getLocation_area() {
+        return location_area;
+    }
+
+    public void setLocation_area(LocationArea location_area) {
+        this.location_area = location_area;
+    }
+}
+
+class LocationArea {
+    String name;
 
     public String getName() {
         return name;
     }
 
-    public EncounterResponse setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public EncounterResponse setId(Integer id) {
-        this.id = id;
-        return this;
-    }
-
-    public VersionGroup getVersionGroup() {
-        return versionGroup;
-    }
-
-    public EncounterResponse setVersionGroup(VersionGroup versionGroup) {
-        this.versionGroup = versionGroup;
-        return this;
     }
 }

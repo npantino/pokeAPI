@@ -5,12 +5,9 @@ function getStuff() {
     let originalUrl = 'https://pokeapi.co/api/v2/pokemon/{id or name}/';
 
     // Collect promises so we can wait to show the info box until all promises have resolved
-    const pokemonPromise = fetch("http://localhost:8080/api/http-test/pokemon", {
-        mode: "no-cors",
+    const pokemonPromise = fetch(`http://localhost:8080/api/http-test/pokemon/${pokemonName}`, {
         headers: {
             'Content-Type': 'application/json',
-            credentials: 'include',
-            'Access-Control-Allow-Origin': "http://localhost:8080/api/http-test/pokemon"
         }
     })
         .then(response => {
@@ -33,10 +30,9 @@ function getStuff() {
                     // Base stats and total
                     let total = 0;
                     for (let i = 0; i < json.stats.length; i++) {
-                        total += json.stats[i].base_stat;
                         document.getElementById("stat_" + (i+1)).innerHTML = json.stats[i].base_stat;
                     }
-                    document.getElementById("stat_total").innerHTML = total;
+                    document.getElementById("stat_total").innerHTML = json.totalStats;
 
 
 
@@ -78,7 +74,6 @@ function getStuff() {
     const encounterPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/encounters`, {
         headers: {
             'Content-Type': 'application/json',
-            credentials: 'include',
         }
     })
         .then(response => {

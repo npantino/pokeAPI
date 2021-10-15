@@ -11,9 +11,9 @@ public class PokemonResponse {
     List<Types> types;
     List<Stats> stats;
     List<EncounterResponse> encounterResponse;
-    //List<location_area> location_area;
     @JsonProperty("version_group")
     VersionGroup versionGroup;
+    List<Moves> moves;
 
 
     public List<Types> getTypes() {
@@ -81,6 +81,14 @@ public class PokemonResponse {
 
     public void setAbilities(List<Abilities> abilities) {
         this.abilities = abilities;
+    }
+
+    public List<Moves> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Moves> moves) {
+        this.moves = moves;
     }
 }
 
@@ -174,6 +182,93 @@ class Types {
 }
 
 class Type {
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+class Moves {
+    PokemonMove pokemonMove;
+    Version_group_details version_group_details;
+
+    public PokemonMove getPokemonMove() {
+        return pokemonMove;
+    }
+
+    public void setPokemonMove(PokemonMove pokemonMove) {
+        this.pokemonMove = pokemonMove;
+    }
+
+    public Version_group_details getVersion_group_details() {
+        return version_group_details;
+    }
+
+    public void setVersion_group_details(Version_group_details version_group_details) {
+        this.version_group_details = version_group_details;
+    }
+}
+
+class PokemonMove {
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+class Version_group_details {
+    int level_learned_at;
+    Version_group version_group;
+    Move_learn_method move_learn_method;
+
+    public int getLevel_learned_at() {
+        return level_learned_at;
+    }
+
+    public void setLevel_learned_at(int level_learned_at) {
+        this.level_learned_at = level_learned_at;
+    }
+
+    public Version_group getVersion_group() {
+        return version_group;
+    }
+
+    public void setVersion_group(Version_group version_group) {
+        this.version_group = version_group;
+    }
+
+    public Move_learn_method getMove_learn_method() {
+        return move_learn_method;
+    }
+
+    public void setMove_learn_method(Move_learn_method move_learn_method) {
+        this.move_learn_method = move_learn_method;
+    }
+}
+
+class Version_group {
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+class Move_learn_method {
     String name;
 
     public String getName() {

@@ -13,7 +13,6 @@ function getStuff() {
         .then(response => {
             return response.json()
                 .then(json => {
-                    console.log(json);
                     id = json.id;
                     document.getElementById("id").innerHTML = `id: ${id}`;
                     // Pokemon typing
@@ -71,7 +70,7 @@ function getStuff() {
         });
 
 
-    const encounterPromise = fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/encounters`, {
+    const encounterPromise = fetch(`http://localhost:8080/api/http-test/pokemon/${pokemonName}`, {
         headers: {
             'Content-Type': 'application/json',
         }

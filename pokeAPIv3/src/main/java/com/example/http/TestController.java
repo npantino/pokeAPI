@@ -1,6 +1,7 @@
 package com.example.http;
 
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import reactor.core.publisher.Mono;
@@ -33,6 +34,10 @@ public class TestController {
             pr.encounterResponse = encounterResponse.block();
             return pr;
         });
+    }
+    @Delete("deleteSearchHistory")
+    public void delete() {
+        searchHistoryRepository.deleteAll();
     }
 
     @Get("encounters/{pokemon}")

@@ -5,6 +5,7 @@ import io.micronaut.transaction.annotation.ReadOnly;
 import jakarta.inject.Singleton;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,13 +33,17 @@ public class SearchHistoryRepositoryImpl implements SearchHistoryRepository {
     }
 
     @Override
+    @Transactional
     public void delete(@NotNull Long id) {
         SearchHistory searchHistory = this.findById(id).get();
         entityManager.remove(searchHistory);
     }
 
-    public void deletex(@NotNull Long id) {
-        SearchHistory searchHistory = this.findById();
-        entityManager.remove(searchHistory);
+    @Override
+    @Transactional
+    public void deleteAll() {
+        String queryString = "delete from SearchHistory";
+        Query query = entityManager.createQuery(queryString);
+        query.executeUpdate();
     }
 }

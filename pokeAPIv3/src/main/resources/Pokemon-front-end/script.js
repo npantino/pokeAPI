@@ -101,3 +101,12 @@ function getStuff() {
         document.getElementById("gameInfo").style.display = "block";
     })
 }
+
+function clearSearchHistory() {
+    const pokemonPromise = fetch(`http://localhost:8080/api/http-test/deleteSearchHistory`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+}

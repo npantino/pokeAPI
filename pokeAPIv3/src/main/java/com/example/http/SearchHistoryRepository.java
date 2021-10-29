@@ -8,4 +8,5 @@ public interface SearchHistoryRepository {
     Optional<SearchHistory> findById(@NotNull Long id);
     SearchHistory save(@NotBlank String name);
     void delete(@NotNull Long id);
+    void deleteAll();
 }

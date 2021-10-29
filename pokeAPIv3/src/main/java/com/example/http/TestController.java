@@ -11,9 +11,11 @@ import java.util.List;
 @Controller("/api/http-test")
 public class TestController {
     final private PokeClient pokeClient;
+    final private SearchHistoryRepository searchHistoryRepository;
 
-    public TestController(PokeClient pokeClient) {
+    public TestController(PokeClient pokeClient, SearchHistoryRepository searchHistoryRepository) {
         this.pokeClient = pokeClient;
+        this.searchHistoryRepository = searchHistoryRepository;
     }
 
     @Get("machine")
@@ -23,6 +25,7 @@ public class TestController {
 
     @Get("pokemon/{pokemon}")
     public Mono<PokemonResponse> pokemon(@PathVariable String pokemon) {
+        searchHistoryRepository.save(pokemon);
         Mono<PokemonResponse> pokemonResponse =  pokeClient.fetchResource("pokemon", pokemon, PokemonResponse.class);
         Mono<List> encounterResponse =  pokeClient.fetchAltResource("pokemon", pokemon,
                 "encounters", List.class);

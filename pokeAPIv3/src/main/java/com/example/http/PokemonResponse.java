@@ -195,7 +195,7 @@ class Type {
 
 class Moves {
     PokemonMove pokemonMove;
-    Version_group_details version_group_details;
+    List<Version_group_details> version_group_details;
 
     public PokemonMove getPokemonMove() {
         return pokemonMove;
@@ -205,11 +205,11 @@ class Moves {
         this.pokemonMove = pokemonMove;
     }
 
-    public Version_group_details getVersion_group_details() {
+    public List<Version_group_details> getVersion_group_details() {
         return version_group_details;
     }
 
-    public void setVersion_group_details(Version_group_details version_group_details) {
+    public void setVersion_group_details(List<Version_group_details> version_group_details) {
         this.version_group_details = version_group_details;
     }
 }

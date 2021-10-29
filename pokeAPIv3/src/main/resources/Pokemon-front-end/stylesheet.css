@@ -1,3 +1,7 @@
+body {
+    background-color: #ffc266;
+}
+
 h1 {
     text-align: center;
     font-family: sans-serif;
@@ -30,4 +34,18 @@ button {
     display: inline-block;
     font-size: 12px;
     border-radius: 6px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 120px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 2px black;
 }

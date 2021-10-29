@@ -1,5 +1,5 @@
 function getStuff() {
-    let pokemonName = document.getElementById("searchBox").value;
+    let pokemonName = document.getElementById("searchBox").value.toLowerCase();
     let id = ""
     let location_details = ""
     let originalUrl = 'https://pokeapi.co/api/v2/pokemon/{id or name}/';
@@ -70,7 +70,7 @@ function getStuff() {
         });
 
 
-    const encounterPromise = fetch(`http://localhost:8080/api/http-test/pokemon/${pokemonName}`, {
+    const encounterPromise = fetch(`http://localhost:8080/api/http-test/encounters/${pokemonName}`, {
         headers: {
             'Content-Type': 'application/json',
         }

@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Controller("/api/http-test")
 public class TestController {
@@ -35,6 +36,12 @@ public class TestController {
             return pr;
         });
     }
+
+    @Get("searchHistory")
+    public List<SearchHistory> searchHistory() {
+        return searchHistoryRepository.findAll();
+    }
+
     @Delete("deleteSearchHistory")
     public void delete() {
         searchHistoryRepository.deleteAll();

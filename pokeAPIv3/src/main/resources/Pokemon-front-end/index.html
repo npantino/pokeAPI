@@ -8,12 +8,13 @@
 <body>
 <h1>Pokemon Data</h1>
 <div class="container">
-    <label for="searchBox"></label><input id="searchBox" type="text" placeholder="Pokemon Name"/>
+    <label for="searchBox"></label><input id="searchBox" type="text" placeholder="Pokemon Name/Id"/>
     <button id="searchButton" class="button1" onclick="getStuff()">Search</button>
 </div>
 
 <div id="gameInfo">
     <div class="stats">
+        <p id="name"></p>
         <p id="id"></p>
         <p id="type"></p>
         <div class="baseStats">

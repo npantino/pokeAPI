@@ -36,6 +36,15 @@ button {
     border-radius: 6px;
 }
 
+.historyButton {
+
+}
+
+#clearButton {
+    margin-top: 500px;
+    margin-left: 100px;
+}
+
 table {
     border-collapse: collapse;
     margin: 15px 0;

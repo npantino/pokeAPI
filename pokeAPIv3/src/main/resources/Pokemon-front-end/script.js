@@ -7,7 +7,20 @@ function getSearchHistory() {
         .then(response => {
             return response.json()
                 .then(json => {
-                    console.table(json);
+                    const searchBox = document.getElementById("searchBox");
+                    const rect = searchBox.getBoundingClientRect();
+                    const searchHistory = document.getElementById("searchHistory");
+
+                    searchHistory.postion = "absolute";
+                    searchHistory.top = rect.bottom;
+                    searchHistory.left = rect.left;
+
+                    for (let i = 0; i < json.length; i++) {
+                        let ele = document.createElement("button");
+                        ele.setAttribute("id","historyButton"+i);
+                        ele.innerHTML = json[i];
+                        searchHistory.appendChild(ele);
+                    }
                 });
         });
 }
@@ -121,10 +134,20 @@ document.addEventListener('keydown', function(event)
 {
     if (event.code === "Enter" && !(document.getElementById("searchBox").value == null ||
         document.getElementById("searchBox").value === "")) {
-        console.log("enter");
         getStuff();
     }
 }, true);
+
+document.getElementById("searchBox").addEventListener('focus', function(event) {
+    document.getElementById("searchHistory").innerHTML = "";
+    getSearchHistory();
+    document.getElementById("searchHistory").style.display = "block";
+}, true);
+
+document.getElementById("searchBox").addEventListener('focusout', function(event) {
+    document.getElementById("searchHistory").style.display = "none";
+}, true);
+
 
 function clearSearchHistory() {
     const pokemonPromise = fetch(`http://localhost:8080/api/http-test/deleteSearchHistory`, {

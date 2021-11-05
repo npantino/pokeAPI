@@ -7,10 +7,11 @@
 </head>
 <body>
 <h1>Pokemon Data</h1>
-<div class="container">
+<div class="searchBox">
     <label for="searchBox"></label><input id="searchBox" type="text" placeholder="Pokemon Name/Id"/>
-    <button id="searchButton" class="button1" onclick="getStuff()">Search</button>
+    <button id="searchButton" class="button" onclick="getStuff()">Search</button>
 </div>
+<div id="searchHistory"></div>
 
 <div id="gameInfo">
     <div class="stats">
@@ -55,13 +56,13 @@
     <p id="locations"></p>
 </div>
 
-<div id="footer">
-    <div id="settings">
-        <button id="clearButton" class="button1" onclick="clearSearchHistory()">Clear Search History</button>
-    </div>
-</div>
 <script src="script.js"></script>
-<script>setInterval(() => getSearchHistory(), 500);</script>
 <script>document.getElementById("gameInfo").style.display = "none";</script>
+<script>document.getElementById("searchHistory").style.display = "none";</script>
 </body>
+<footer>
+    <div id="settings">
+        <button id="clearButton" class="button" onclick="clearSearchHistory()">Clear Search History</button>
+    </div>
+</footer>
 </html>

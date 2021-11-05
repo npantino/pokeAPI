@@ -21,12 +21,12 @@ public class TestController {
     }
 
     @Get("machine")
-    public Mono<MachineResponse> machine() {
+    public Mono<MachineResponse> machine() throws RuntimeException {
         return pokeClient.fetchResource("machine", "1", MachineResponse.class);
     }
 
     @Get("pokemon/{pokemon}")
-    public Mono<PokemonResponse> pokemon(@PathVariable String pokemon) {
+    public Mono<PokemonResponse> pokemon(@PathVariable String pokemon) throws RuntimeException {
         searchHistoryRepository.save(pokemon);
         Mono<PokemonResponse> pokemonResponse =  pokeClient.fetchResource("pokemon", pokemon, PokemonResponse.class);
         Mono<List> encounterResponse =  pokeClient.fetchAltResource("pokemon", pokemon,
@@ -38,12 +38,12 @@ public class TestController {
     }
 
     @Get("searchHistory")
-    public List<SearchHistory> searchHistory() {
+    public List<SearchHistory> searchHistory() throws RuntimeException {
         return searchHistoryRepository.findAll();
     }
 
     @Delete("deleteSearchHistory")
-    public void delete() {
+    public void delete() throws RuntimeException {
         searchHistoryRepository.deleteAll();
     }
 

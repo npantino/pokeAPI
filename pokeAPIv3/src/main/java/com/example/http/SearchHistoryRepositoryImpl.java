@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-//import com.mysql.jdbc.Statement;
 
 @Singleton
 public class SearchHistoryRepositoryImpl implements SearchHistoryRepository {
@@ -29,9 +28,10 @@ public class SearchHistoryRepositoryImpl implements SearchHistoryRepository {
 
     @Override
     @Transactional
-    public List findAll() {
-        String queryString = "select name from SearchHistory order by id desc limit 5";
+    public List<SearchHistory> findAll() {
+        String queryString = "select name from SearchHistory order by id desc";
         Query query = entityManager.createQuery(queryString);
+        query.setMaxResults(5);
         return query.getResultList();
     }
 

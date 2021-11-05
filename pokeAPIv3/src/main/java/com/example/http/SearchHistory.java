@@ -21,7 +21,7 @@ public class SearchHistory {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = false)
     private String name;
 
     public Long getId() {

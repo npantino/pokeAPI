@@ -1,14 +1,17 @@
-const searchHistory = fetch(`http://localhost:8080/api/http-test/searchHistory`, {
-    headers: {
-        'Content-Type': 'application/json',
-    }
-})
-.then(response => {
-    return response.json()
-        .then(json => {
-            console.log(json);
+function getSearchHistory() {
+    const searchHistory = fetch(`http://localhost:8080/api/http-test/searchHistory`, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => {
+            return response.json()
+                .then(json => {
+                    console.table(json);
+                });
         });
-});
+}
+
 
 function getStuff() {
     let pokemonName = document.getElementById("searchBox").value.toLowerCase();

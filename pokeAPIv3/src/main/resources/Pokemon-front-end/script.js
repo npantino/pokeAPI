@@ -20,17 +20,25 @@ function getSearchHistory() {
                         ele.setAttribute("id","historyButton"+i);
                         ele.innerHTML = json[i];
                         searchHistory.appendChild(ele);
+                        document.getElementById("historyButton"+i).addEventListener('mousedown', function (event) {
+                            getStuff(json[i]);
+                        }, true);
                     }
                 });
         });
 }
 
+document.getElementById("searchButton").addEventListener('mousedown', function(event) {
+    let name = document.getElementById("searchBox").value.toLowerCase();
+    getStuff(name);
+}, true);
 
-function getStuff() {
-    let pokemonName = document.getElementById("searchBox").value.toLowerCase();
+function getStuff(pokemonName) {
+    //let pokemonName = document.getElementById("searchBox").value.toLowerCase();
+    let name = pokemonName.toLowerCase();
 
     // Collect promises so we can wait to show the info box until all promises have resolved
-    const pokemonPromise = fetch(`http://localhost:8080/api/http-test/pokemon/${pokemonName}`, {
+    const pokemonPromise = fetch(`http://localhost:8080/api/http-test/pokemon/${name}`, {
         headers: {
             'Content-Type': 'application/json',
         }

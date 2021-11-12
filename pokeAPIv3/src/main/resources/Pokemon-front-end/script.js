@@ -22,6 +22,7 @@ function getSearchHistory() {
                         searchHistory.appendChild(ele);
                         document.getElementById("historyButton"+i).addEventListener('mousedown', function (event) {
                             getStuff(json[i]);
+                            document.getElementById("searchBox").value = json[i];
                         }, true);
                     }
                 });
@@ -138,11 +139,10 @@ function getStuff(pokemonName) {
     })
 }
 
-document.addEventListener('keydown', function(event)
-{
-    if (event.code === "Enter" && !(document.getElementById("searchBox").value == null ||
-        document.getElementById("searchBox").value === "")) {
-        getStuff();
+document.addEventListener('keydown', function(event) {
+    let name = document.getElementById("searchBox").value.toLowerCase();
+    if (event.code === "Enter" && !(name == null || name === "")) {
+        getStuff(name);
     }
 }, true);
 

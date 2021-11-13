@@ -20,6 +20,7 @@ p {
 
 #searchBox {
     align-content: center;
+    background-color: #fdd892;
     font-family: sans-serif;
     margin-left: 100px;
 }
@@ -36,11 +37,16 @@ button {
     border-radius: 6px;
 }
 
-.historyButton {
+#searchButton {
 
 }
 
+.historyButton {
+    background-color: #e0aa69;
+}
+
 #clearButton {
+    position: absolute;
     margin-top: 500px;
     margin-left: 100px;
 }

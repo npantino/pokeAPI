@@ -11,25 +11,32 @@ function getSearchHistory() {
                     const rect = searchBox.getBoundingClientRect();
                     const searchHistory = document.getElementById("searchHistory");
 
-                    searchHistory.postion = "absolute";
-                    searchHistory.top = rect.bottom;
-                    searchHistory.left = rect.left;
+                    searchHistory.style.position = "absolute";
+                    searchHistory.style.top = rect.bottom+"px";
+                    searchHistory.style.left = rect.left+"px";
+                    searchHistory.style.width = rect.width+"px";
 
                     for (let i = 0; i < json.length; i++) {
                         let ele = document.createElement("button");
-                        ele.setAttribute("id","historyButton"+i);
+                        ele.id = "historyButton" + i;
+                        ele.className = "historyButton";
+                        ele.style.width = rect.width+"px";
+                        ele.style.display = "inline-block";
                         ele.innerHTML = json[i];
-                        searchHistory.appendChild(ele);
-                        document.getElementById("historyButton"+i).addEventListener('mousedown', function (event) {
+                        let div = document.createElement("div");
+                        div.id = "history" + i;
+                        div.appendChild(ele);
+                        searchHistory.appendChild(div);
+                        ele.addEventListener('mousedown', function (event) {
                             getStuff(json[i]);
-                            document.getElementById("searchBox").value = json[i];
+                            searchBox.value = json[i];
                         }, true);
                     }
                 });
         });
 }
 
-document.getElementById("searchButton").addEventListener('mousedown', function(event) {
+document.getElementById("searchButton").addEventListener('click', function(event) {
     let name = document.getElementById("searchBox").value.toLowerCase();
     getStuff(name);
 }, true);
